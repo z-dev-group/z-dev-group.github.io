@@ -1,0 +1,21 @@
+let i = 0
+let total = 0
+while (i < 10) {
+  i++
+  total = total + i
+}
+var_dump(total)
+var_dump(i)
+
+i = 0
+total = 0
+while (i < 10) {
+  i++
+  total = total + i
+
+  if (i > 5) {
+    break
+  }
+}
+var_dump(total)
+var_dump(i)

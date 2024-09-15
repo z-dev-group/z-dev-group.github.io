@@ -1,0 +1,5 @@
+let i = 0
+i++
+var_dump(i)
+let compare = i == 1
+var_dump(compare)

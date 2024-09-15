@@ -1,0 +1,14 @@
+let total = 0
+for (let i = 0; i <= 10; i++) {
+  total = total + i
+}
+var_dump(total)
+
+total = 0
+for (let j = 0; j <= 10; j++) {
+  total = total + j
+  if (j > 5) {
+    break
+  }
+}
+var_dump(total)

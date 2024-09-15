@@ -1,0 +1,6 @@
+let age = 36
+if (age > 35) {
+  puts("too old")
+} else {
+  puts("so young")
+}
