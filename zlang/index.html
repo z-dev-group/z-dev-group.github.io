@@ -137,7 +137,46 @@ var_dump(total)
 </code></pre><p>输出：</p>
 <pre data-role="codeBlock" data-info="" class="language-text"><code>55
 21
-</code></pre>
+</code></pre><p>5、文件引入<br>
+加入有一个 import.z，需要在另外一个文件use_import.z使用import.z的内容，可以使用import导入<br>
+import.z</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>let name = "seven"
+</code></pre><p>use_import.z</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>import "./import.z"
+var_dump(name)
+</code></pre><p>执行use_import.z<br>
+输出：</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>seven
+</code></pre><p>6、包隔离<br>
+使用package关键字申明包，可以里面定义函数，类，变量<br>
+申明package</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>package string
+
+let concat = fn(str_one, str_two) {
+  return str_one + " " + str_two
+}
+</code></pre><p>使用package中函数，需要在函数前携带上包名</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>import "./package.z"
+
+var_dump(string.concat("hello", "world"))
+</code></pre><p>输出：</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>hello world
+</code></pre><p>7、对象<br>
+z语言支持常规的面向对象编程，支持关键字class，new，interface，extends，implement，-&gt;等等操作<br>
+使用class申明类</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>class User {
+  fn sayHello(name) {
+    return "hello " + name
+  }
+}
+</code></pre><p>使用new实例化对象</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>let user = new User()
+</code></pre><p>使用-&gt;调用对象的方法</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>var_dump(user-&gt;sayHello("seven"))
+</code></pre><p>输出：</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>hello seven
+</code></pre><p><a href="./source/class.z">源码</a></p>
+
       </div>
       
       

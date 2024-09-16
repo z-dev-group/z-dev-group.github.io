@@ -1,0 +1,3 @@
+import "./package.z"
+
+var_dump(string.concat("hello", "world"))

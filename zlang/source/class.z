@@ -1,0 +1,9 @@
+class User {
+  fn sayHello(name) {
+    return "hello " + name
+  }
+}
+
+let user = new User()
+
+var_dump(user->sayHello("seven"))

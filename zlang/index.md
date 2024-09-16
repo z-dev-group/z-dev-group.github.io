@@ -153,3 +153,64 @@ var_dump(total)
 55
 21
 ```
+5、文件引入
+加入有一个 import.z，需要在另外一个文件use_import.z使用import.z的内容，可以使用import导入
+import.z
+```
+let name = "seven"
+```
+use_import.z
+```
+import "./import.z"
+var_dump(name)
+```
+执行use_import.z
+输出：
+```
+seven
+```
+6、包隔离
+使用package关键字申明包，可以里面定义函数，类，变量
+申明package
+```
+package string
+
+let concat = fn(str_one, str_two) {
+  return str_one + " " + str_two
+}
+```
+
+使用package中函数，需要在函数前携带上包名
+```
+import "./package.z"
+
+var_dump(string.concat("hello", "world"))
+```
+输出：
+```
+hello world
+```
+
+7、对象
+z语言支持常规的面向对象编程，支持关键字class，new，interface，extends，implement，->等等操作
+使用class申明类
+```
+class User {
+  fn sayHello(name) {
+    return "hello " + name
+  }
+}
+```
+使用new实例化对象
+```
+let user = new User()
+```
+使用->调用对象的方法
+```
+var_dump(user->sayHello("seven"))
+```
+输出：
+```
+hello seven
+```
+[源码](./source/class.z)
