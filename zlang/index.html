@@ -41,7 +41,7 @@ export Z_ROOT=$(pwd)
 <pre data-role="codeBlock" data-info="" class="language-text"><code>hello world
 </code></pre><h3 id="二-语法说明">二、语法说明 </h3>
 <h4 id="变量类型">变量类型 </h4>
-<p>z语言使用隐形变量申明方式，根据值反推变量类型，目前支持的类型比较简单，intger，float，string，bool(object)，hash，array，null，error，function</p>
+<p>z语言使用隐形变量申明方式，根据值反推变量类型，目前支持的类型比较简单，integer，float，string，boolean，object，array，null，error，function等</p>
 <pre data-role="codeBlock" data-info="" class="language-text"><code>let age = 12
 let height = 160.1
 let name = "seven"
@@ -176,6 +176,12 @@ z语言支持常规的面向对象编程，支持关键字class，new，interfac
 </code></pre><p>输出：</p>
 <pre data-role="codeBlock" data-info="" class="language-text"><code>hello seven
 </code></pre><p><a href="./source/class.z">源码</a></p>
+<h3 id="三-todo">三、todo </h3>
+<ul>
+<li>支持函数defer模块， defer {} 代码块的方式执行函数收尾代码</li>
+<li>面向对象支持 this-&gt; 指向自身</li>
+<li>支持系统调用，用于封装更多内置模块</li>
+</ul>
 
       </div>
       

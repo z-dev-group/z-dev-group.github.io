@@ -31,7 +31,7 @@ hello world
 ### 二、语法说明
 
 #### 变量类型
-z语言使用隐形变量申明方式，根据值反推变量类型，目前支持的类型比较简单，intger，float，string，bool(object)，hash，array，null，error，function
+z语言使用隐形变量申明方式，根据值反推变量类型，目前支持的类型比较简单，integer，float，string，boolean，object，array，null，error，function等
 ```
 let age = 12
 let height = 160.1
@@ -214,3 +214,9 @@ var_dump(user->sayHello("seven"))
 hello seven
 ```
 [源码](./source/class.z)
+
+### 三、todo
+
+* 支持函数defer模块， defer {} 代码块的方式执行函数收尾代码
+* 面向对象支持 this-> 指向自身
+* 支持系统调用，用于封装更多内置模块
