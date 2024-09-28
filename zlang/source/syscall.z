@@ -1,0 +1,12 @@
+fn getpid() {
+  let result = syscall(20)
+  result["result1"]
+} 
+
+fn getppid() {
+  let result = syscall(39)
+  result["result1"]
+}
+
+var_dump(getpid())
+var_dump(getppid())

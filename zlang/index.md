@@ -1,5 +1,5 @@
 ## z语言
-z语言目的是开发一个开箱即用（尤其是web项目），简单容易上手的语言，支持面向对象等等的语言
+z语言[仓库](https://github.com/z-dev-group/zlang)目的是开发一个开箱即用（尤其是web项目），简单容易上手的语言，支持面向对象等等的语言
 
 ### 一、安装
 目前在开发阶段，请使用源码安装的方式，依赖go，请提前安装好，后续会慢慢实现自举以及支持下载安装包。
@@ -215,6 +215,50 @@ hello seven
 ```
 [源码](./source/class.z)
 
+#### 错误处理
+z语言使用变量携带错误信息的方式来实现异常处理，就一个普通的变量，我们可以给这个变量带上错误信息（抛出异常），可以检查一个变量是否带有错误信息（捕获异常），可以获取到异常的错误信息，避免go语言这种需要返回多个字段，以及java这种需要try catch 包裹的麻烦。
+[源码](./source//error.z)
+```
+let name = "seven"
+
+if (is_with_error(name)) {
+  var_dump("find error")
+} else {
+  var_dump("not find error")
+}
+
+with_error(name, "this is user error")
+
+if (is_with_error(name)) {
+  var_dump("find error after with_error")
+  var_dump(get_error_message(name))
+}
+```
+预计输出：
+```
+not find error
+find error after with_error
+this is user error
+```
+
+#### 功能扩展
+使用系统调用扩展z语言功能，包括创建处理，进程控制等等
+[源码](./source/syscall.z)
+```
+fn getpid() {
+  let result = syscall(20)
+  result["result1"]
+} 
+
+fn getppid() {
+  let result = syscall(39)
+  result["result1"]
+}
+
+var_dump(getpid())
+var_dump(getppid())
+```
+输出不确定，根据当时运行情况决定
 ### 三、todo
 
 * 支持函数defer模块， defer {} 代码块的方式执行函数收尾代码

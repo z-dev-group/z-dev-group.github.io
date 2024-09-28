@@ -25,7 +25,7 @@
       <div class="crossnote markdown-preview  ">
       
 <h2 id="z语言">z语言 </h2>
-<p>z语言目的是开发一个开箱即用（尤其是web项目），简单容易上手的语言，支持面向对象等等的语言</p>
+<p>z语言<a href="https://github.com/z-dev-group/zlang">仓库</a>目的是开发一个开箱即用（尤其是web项目），简单容易上手的语言，支持面向对象等等的语言</p>
 <h3 id="一-安装">一、安装 </h3>
 <p>目前在开发阶段，请使用源码安装的方式，依赖go，请提前安装好，后续会慢慢实现自举以及支持下载安装包。</p>
 <p>1、克隆仓库</p>
@@ -176,6 +176,43 @@ z语言支持常规的面向对象编程，支持关键字class，new，interfac
 </code></pre><p>输出：</p>
 <pre data-role="codeBlock" data-info="" class="language-text"><code>hello seven
 </code></pre><p><a href="./source/class.z">源码</a></p>
+<h4 id="错误处理">错误处理 </h4>
+<p>z语言使用变量携带错误信息的方式来实现异常处理，就一个普通的变量，我们可以给这个变量带上错误信息（抛出异常），可以检查一个变量是否带有错误信息（捕获异常），可以获取到异常的错误信息，避免go语言这种需要返回多个字段，以及java这种需要try catch 包裹的麻烦。<br>
+<a href="./source//error.z">源码</a></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>let name = "seven"
+
+if (is_with_error(name)) {
+  var_dump("find error")
+} else {
+  var_dump("not find error")
+}
+
+with_error(name, "this is user error")
+
+if (is_with_error(name)) {
+  var_dump("find error after with_error")
+  var_dump(get_error_message(name))
+}
+</code></pre><p>预计输出：</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>not find error
+find error after with_error
+this is user error
+</code></pre><h4 id="功能扩展">功能扩展 </h4>
+<p>使用系统调用扩展z语言功能，包括创建处理，进程控制等等<br>
+<a href="./source/syscall.z">源码</a></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>fn getpid() {
+  let result = syscall(20)
+  result["result1"]
+} 
+
+fn getppid() {
+  let result = syscall(39)
+  result["result1"]
+}
+
+var_dump(getpid())
+var_dump(getppid())
+</code></pre><p>输出不确定，根据当时运行情况决定</p>
 <h3 id="三-todo">三、todo </h3>
 <ul>
 <li>支持函数defer模块， defer {} 代码块的方式执行函数收尾代码</li>

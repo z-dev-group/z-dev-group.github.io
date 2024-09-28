@@ -1,0 +1,14 @@
+let name = "seven"
+
+if (is_with_error(name)) {
+  var_dump("find error")
+} else {
+  var_dump("not find error")
+}
+
+with_error(name, "this is user error")
+
+if (is_with_error(name)) {
+  var_dump("find error after with_error")
+  var_dump(get_error_message(name))
+}
