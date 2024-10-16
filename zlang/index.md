@@ -213,7 +213,50 @@ var_dump(user->sayHello("seven"))
 ```
 hello seven
 ```
+
 [源码](./source/class.z)
+
+对象方法支持this关键字返回对象本身
+```
+class User {
+  let _name = "seven"
+  fn setName(name) {
+    _name = name
+    return this
+  }
+  fn dump() {
+    var_dump(_name)
+  }
+}
+let u = new User()
+u->setName("xxx")->dump()
+```
+输出：
+```
+xxx
+```
+[源码](./source/this.z)
+
+支持__init 构造函数
+```
+class User {
+  let _name = "seven"
+  fn __init(name) {
+    _name = name
+  }
+  fn dump() {
+    var_dump(_name)
+  }
+}
+let u = new User("yyy")
+u->dump()
+```
+输出
+```
+yyy
+```
+[源码](./source/init.z)
+
 
 #### 错误处理
 z语言使用变量携带错误信息的方式来实现异常处理，就一个普通的变量，我们可以给这个变量带上错误信息（抛出异常），可以检查一个变量是否带有错误信息（捕获异常），可以获取到异常的错误信息，避免go语言这种需要返回多个字段，以及java这种需要try catch 包裹的麻烦。
@@ -261,6 +304,7 @@ var_dump(getppid())
 输出不确定，根据当时运行情况决定
 ### 三、todo
 
-* 支持函数defer模块， defer {} 代码块的方式执行函数收尾代码
-* 面向对象支持 this-> 指向自身
-* 支持系统调用，用于封装更多内置模块
+* 支持函数defer模块， defer {} 代码块的方式执行函数收尾代码(done)
+* 面向对象支持 this-> 指向自身(done)
+* 支持系统调用，用于封装更多内置模块(done)
+* z语言编译成二进制执行

@@ -176,6 +176,37 @@ z语言支持常规的面向对象编程，支持关键字class，new，interfac
 </code></pre><p>输出：</p>
 <pre data-role="codeBlock" data-info="" class="language-text"><code>hello seven
 </code></pre><p><a href="./source/class.z">源码</a></p>
+<p>对象方法支持this关键字返回对象本身</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>class User {
+  let _name = "seven"
+  fn setName(name) {
+    _name = name
+    return this
+  }
+  fn dump() {
+    var_dump(_name)
+  }
+}
+let u = new User()
+u-&gt;setName("xxx")-&gt;dump()
+</code></pre><p>输出：</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>xxx
+</code></pre><p><a href="./source/this.z">源码</a></p>
+<p>支持__init 构造函数</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>class User {
+  let _name = "seven"
+  fn __init(name) {
+    _name = name
+  }
+  fn dump() {
+    var_dump(_name)
+  }
+}
+let u = new User("yyy")
+u-&gt;dump()
+</code></pre><p>输出</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>yyy
+</code></pre><p><a href="./source/init.z">源码</a></p>
 <h4 id="错误处理">错误处理 </h4>
 <p>z语言使用变量携带错误信息的方式来实现异常处理，就一个普通的变量，我们可以给这个变量带上错误信息（抛出异常），可以检查一个变量是否带有错误信息（捕获异常），可以获取到异常的错误信息，避免go语言这种需要返回多个字段，以及java这种需要try catch 包裹的麻烦。<br>
 <a href="./source//error.z">源码</a></p>
@@ -215,9 +246,10 @@ var_dump(getppid())
 </code></pre><p>输出不确定，根据当时运行情况决定</p>
 <h3 id="三-todo">三、todo </h3>
 <ul>
-<li>支持函数defer模块， defer {} 代码块的方式执行函数收尾代码</li>
-<li>面向对象支持 this-&gt; 指向自身</li>
-<li>支持系统调用，用于封装更多内置模块</li>
+<li>支持函数defer模块， defer {} 代码块的方式执行函数收尾代码(done)</li>
+<li>面向对象支持 this-&gt; 指向自身(done)</li>
+<li>支持系统调用，用于封装更多内置模块(done)</li>
+<li>z语言编译成二进制执行</li>
 </ul>
 
       </div>

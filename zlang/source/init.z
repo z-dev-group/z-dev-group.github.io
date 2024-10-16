@@ -1,0 +1,11 @@
+class User {
+  let _name = "seven"
+  fn __init(name) {
+    _name = name
+  }
+  fn dump() {
+    var_dump(_name)
+  }
+}
+let u = new User("yyy")
+u->dump()

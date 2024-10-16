@@ -1,0 +1,12 @@
+class User {
+  let _name = "seven"
+  fn setName(name) {
+    _name = name
+    return this
+  }
+  fn dump() {
+    var_dump(_name)
+  }
+}
+let u = new User()
+u->setName("xxx")->dump()
