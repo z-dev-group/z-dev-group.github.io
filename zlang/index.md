@@ -260,7 +260,7 @@ yyy
 
 #### 错误处理
 z语言使用变量携带错误信息的方式来实现异常处理，就一个普通的变量，我们可以给这个变量带上错误信息（抛出异常），可以检查一个变量是否带有错误信息（捕获异常），可以获取到异常的错误信息，避免go语言这种需要返回多个字段，以及java这种需要try catch 包裹的麻烦。
-[源码](./source//error.z)
+[源码](./source/error.z)
 ```
 let name = "seven"
 
@@ -284,8 +284,51 @@ find error after with_error
 this is user error
 ```
 
+#### defer 延迟执行模块
+块级别的defer支持，只要是在{}代码块里面定义defer{}的代码块，该代码块都会在该defer关键定义的代码块执行完调用。
+[源码](./source/defer.z)
+```
+fn hello() {                                                                                                                   
+  var_dump("first hello")
+  defer {
+    var_dump("world")
+  }
+  var_dump("hello")
+}
+
+hello()
+```
+输出
+```
+first hello
+hello
+world
+```
+可以看到world是在hello 之后输出，defer代码块延迟执行。
+在举例在if代码块中
+```
+fn hello_if() {
+  let a = 1;
+  if (a > 0) {
+    defer {
+      if (a > 0) {
+        var_dump("end print")
+      }   
+    }   
+    var_dump("big than 0") 
+  }
+}
+hello_if()
+```
+输入如下：
+```
+big than 0
+end print
+```
+可以看到 end print的输出是延迟执行的。
+
 #### 功能扩展
-使用系统调用扩展z语言功能，包括创建处理，进程控制等等
+使用系统调用扩展z语言功能，包括文件处理，进程控制等等
 [源码](./source/syscall.z)
 ```
 fn getpid() {
